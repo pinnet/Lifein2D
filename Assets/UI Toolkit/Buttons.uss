@@ -1,0 +1,61 @@
+:root {
+    --title-colour: rgb(238, 182, 0);
+}
+
+.Buttonface {
+    height: 50px;
+    width: 58%;
+    font-size: 31px;
+    -unity-font-definition: initial;
+    -unity-font: url('project://database/Assets/FPSFont/FPS%20Gaming%20Font/Square-Black.ttf?fileID=12800000&guid=d7cffddcbc0cc8f4ebe6e28eb9804082&type=3#Square-Black');
+    -unity-font-style: italic;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+    border-left-color: rgb(96, 34, 34);
+    border-right-color: rgb(96, 34, 34);
+    border-top-color: rgb(96, 34, 34);
+    border-bottom-color: rgb(96, 34, 34);
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    background-color: rgb(255, 171, 37);
+}
+
+.Buttonface:hover {
+    scale: 1.1 1;
+}
+
+.Buttonface:active {
+    background-color: rgb(0, 255, 117);
+    translate: 0 2px;
+    scale: 0.999 1;
+    color: rgb(0, 0, 0);
+}
+
+.hidden {
+    display: none;
+}
+
+.Titleface {
+    align-items: center;
+    justify-content: space-between;
+    -unity-font: url('project://database/Assets/FPSFont/FPS%20Gaming%20Font/Square-Black.ttf?fileID=12800000&guid=d7cffddcbc0cc8f4ebe6e28eb9804082&type=3#Square-Black');
+    font-size: 161px;
+    -unity-text-align: middle-center;
+    -unity-text-outline-width: 1px;
+    text-shadow: 2px 2px 1.5px rgb(23, 35, 84);
+    -unity-text-outline-color: rgb(166, 166, 166);
+    width: 257px;
+    color: var(--title-colour);
+    -unity-font-style: normal;
+    margin-bottom: 4px;
+    padding-bottom: 2px;
+    -unity-font-definition: initial;
+}
