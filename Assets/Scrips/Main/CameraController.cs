@@ -7,7 +7,6 @@ public class CameraController : MonoBehaviour
 {
   
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float rotationSpeed = 4F;
     [SerializeField] private float zoomSpeed = 0.00003F;
     [SerializeField] private SetScoreGameEventSO SetScore;
     [SerializeField] private float _maxZoom = 12f;
