@@ -1,3 +1,4 @@
+using Helpers.Events;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,12 +13,15 @@ public class GameController : MonoBehaviour
     [SerializeField] private MoveUpdateGameEventSO MoveUpdate;
     [SerializeField] private StatusUpdateGameEventSO StatusUpdate;
     [SerializeField] private OwnerSO player;
+    [SerializeField] private GameBoardSO gameBoard;
+    [SerializeField] private VoidEvent onGameStart;
 
     private void Start()
     {
         MoveUpdate.Raise(starting_move);
         ScoreUpdate.Raise(score);
         StatusUpdate.Raise("Player 1 - play your opening move(s) then press GO");
+        onGameStart = new VoidEvent();
     }
 
 
