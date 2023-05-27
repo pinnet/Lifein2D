@@ -123,6 +123,58 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &71194124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 71194125}
+  - component: {fileID: 71194126}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &71194125
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71194124}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &71194126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71194124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a3393aef76416e44a84d3fcf5d77a1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starting_move: 50
+  starting_Move_value: 100
+  cell_value: 10
+  score: 0
+  ScoreUpdate: {fileID: 11400000, guid: a812580192d3f7b4a87eaad89ebc11d4, type: 2}
+  MoveUpdate: {fileID: 11400000, guid: ba7742a7fb627af4cb2001f003a973f8, type: 2}
+  StatusUpdate: {fileID: 11400000, guid: 722305933f8be48488212888aaede5b3, type: 2}
+  player: {fileID: 11400000, guid: bf6fbc5316f40d543a22aa14dc503eef, type: 2}
 --- !u!1 &434472498
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,9 +905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.9
-  rotationSpeed: 4
   zoomSpeed: 0.1
-  SetScore: {fileID: 11400000, guid: 6e2d24b4a4940264b9a0d6e6483dc38a, type: 2}
   _maxZoom: 12
   _minZoom: 0.5
 --- !u!1 &2006568188
@@ -1116,6 +1166,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2114459941}
   - component: {fileID: 2114459942}
+  - component: {fileID: 2114459944}
+  - component: {fileID: 2114459945}
   - component: {fileID: 2114459943}
   m_Layer: 0
   m_Name: UI
@@ -1132,7 +1184,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114459940}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.791415, y: -0.45003748, z: -3.7635672}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1152,7 +1204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63729203235db5e419599c60ba4b9820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 6e2d24b4a4940264b9a0d6e6483dc38a, type: 2}
+  Event: {fileID: 11400000, guid: a812580192d3f7b4a87eaad89ebc11d4, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
@@ -1181,3 +1233,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   document: {fileID: 983462525}
+--- !u!114 &2114459944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114459940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d79cf7a43ef3bc04aba2c5547a637073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: ba7742a7fb627af4cb2001f003a973f8, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2114459943}
+        m_TargetAssemblyTypeName: UiController, Assembly-CSharp
+        m_MethodName: UpdateMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2114459945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114459940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aafb19b431b4f2246b9c471fef80248c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 722305933f8be48488212888aaede5b3, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2114459943}
+        m_TargetAssemblyTypeName: UiController, Assembly-CSharp
+        m_MethodName: StatusUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

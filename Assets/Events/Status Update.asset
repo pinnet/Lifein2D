@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66dedc42662a42c4c92cd13f76f23e72, type: 3}
-  m_Name: SetScore
+  m_Script: {fileID: 11500000, guid: ed1bd981496e7a9438d9fd067889ee7e, type: 3}
+  m_Name: Status Update
   m_EditorClassIdentifier: 

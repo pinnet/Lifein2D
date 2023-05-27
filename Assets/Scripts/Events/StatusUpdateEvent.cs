@@ -4,6 +4,6 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class SetScoreEvent : UnityEvent<int> 
+public class StatusUpdateEvent : UnityEvent<string> 
 {
 }

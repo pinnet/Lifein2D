@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
   
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float zoomSpeed = 0.00003F;
-    [SerializeField] private SetScoreGameEventSO SetScore;
+    
     [SerializeField] private float _maxZoom = 12f;
     [SerializeField] private float _minZoom = 0.5f;
 
@@ -50,9 +50,7 @@ public class CameraController : MonoBehaviour
     }
     public void OnZoom(InputAction.CallbackContext ctx)
     {
-        SetScore.Raise((int)_zoom);
-
-        if (ctx.phase != InputActionPhase.Performed) return;
+       if (ctx.phase != InputActionPhase.Performed) return;
       
 
         Vector2 wheel = ctx.ReadValue<Vector2>();

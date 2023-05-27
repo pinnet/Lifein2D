@@ -2,9 +2,9 @@
     <Style src="project://database/Assets/UI%20Toolkit/Gamebuttons.uss?fileID=7433441132597879392&amp;guid=109a21a04aa240f4ca974f44d4e04222&amp;type=3#Gamebuttons" />
     <ui:VisualElement name="screen" style="width: 100%; height: 100%;">
         <ui:VisualElement name="Score" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: auto; width: 100%; align-items: flex-end; justify-content: space-around; align-self: center; flex-direction: row; top: auto; position: absolute; color: rgb(255, 255, 255); -unity-font-style: bold;">
-            <ui:Label tabindex="-1" text="Tiles : 40" display-tooltip-when-elided="true" name="Tiles" class="LabelColour" />
+            <ui:Label tabindex="-1" text="Move : 50" display-tooltip-when-elided="true" name="MoveText" class="LabelColour" />
             <ui:Label tabindex="-1" text="Score : 00000" display-tooltip-when-elided="true" name="ScoreText" />
-            <ui:Label tabindex="-1" text="Generation : &lt;Press Go&gt;" display-tooltip-when-elided="true" />
+            <ui:Label tabindex="-1" text="Generation : &lt;Press Go&gt;" display-tooltip-when-elided="true" name="Generation" />
         </ui:VisualElement>
         <ui:VisualElement name="Body" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: 500px;" />
         <ui:VisualElement name="Toolbar" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); justify-content: flex-start; align-self: center; width: 100%; height: 9px; align-items: center; flex-direction: row; position: absolute; bottom: 40px;">

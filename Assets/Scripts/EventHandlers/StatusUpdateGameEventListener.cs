@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SetScoreGameEventListener : MonoBehaviour
+public class StatusUpdateGameEventListener : MonoBehaviour
 {
-    public SetScoreGameEventSO Event;
-    public SetScoreEvent Response;
+    public StatusUpdateGameEventSO Event;
+    public StatusUpdateEvent Response;
 
     private void OnEnable()
     { Event.RegisterListener(this); }
@@ -14,6 +14,6 @@ public class SetScoreGameEventListener : MonoBehaviour
     private void OnDisable()
     { Event.UnregisterListener(this); }
 
-    public void OnEventRaised(int value)
+    public void OnEventRaised(string value)
     { Response.Invoke(value); }
 }
