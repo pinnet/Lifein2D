@@ -7,5 +7,8 @@ public class GameBoardSO : ScriptableObject
 { 
     public int width;
     public int height;
-    public float cellSize;        
+    public float cellSize;
+    public int totalGenerations;
+    public int startingMoves;
+    public int startingMoveCost;
 }

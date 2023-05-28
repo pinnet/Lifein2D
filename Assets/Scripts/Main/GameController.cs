@@ -5,24 +5,31 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] int starting_move = 50;
-    [SerializeField] int starting_Move_value = 100;
-    [SerializeField] int cell_value = 10;
-    [SerializeField] int score = 0;
-    [SerializeField] private ScoreUpdateGameEventSO ScoreUpdate;
-    [SerializeField] private MoveUpdateGameEventSO MoveUpdate;
-    [SerializeField] private StatusUpdateGameEventSO StatusUpdate;
-    [SerializeField] private OwnerSO player;
+    [SerializeField] private PlayerSO player;
     [SerializeField] private GameBoardSO gameBoard;
-    [SerializeField] private VoidEvent onGameStart;
+    [SerializeField] private UIUpdateEvent updateUI;
+
+    private int score = 0;
 
     private void Start()
     {
-        MoveUpdate.Raise(starting_move);
-        ScoreUpdate.Raise(score);
-        StatusUpdate.Raise("Player 1 - play your opening move(s) then press GO");
-        onGameStart = new VoidEvent();
+        score = gameBoard.startingMoves * gameBoard.startingMoveCost;
+        UIData data = new UIData();
+        data.move = gameBoard.startingMoves;
+        data.score = score;
+        data.generation = null;
+        data.status = "Player One select your starting cells to begin and then press GO";
+
+        updateUI.Raise(data);
     }
 
-
+    public void GameStart(Void value) { 
+        
+        UIData data = new UIData();
+        data.move = 0;
+        data.score = score;
+        data.generation = 0;
+        data.status = "Game Started";
+        updateUI.Raise(data);
+       }
 }

@@ -8,7 +8,7 @@ namespace CellularAutomaton
     public class Cell
     {
         private bool alive;
-        private OwnerSO owner;
+        private PlayerSO owner;
         private Vector2Int position;
 
         public Cell()
@@ -22,7 +22,7 @@ namespace CellularAutomaton
             set { if (value == false) { this.owner = null; } } 
         }
                             
-        public OwnerSO Owner
+        public PlayerSO Owner
         {
             get { return owner; }
             set { if (value != null) { owner = value; alive = true; }

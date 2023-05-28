@@ -63,7 +63,7 @@ namespace CellularAutomaton
             }
             return count;
         }
-        public void Advance(OwnerSO owner)
+        public void Advance(PlayerSO owner)
         {
             Grid next = new Grid(Columns, Rows);
             for (int i = 0; i < Columns; i++)

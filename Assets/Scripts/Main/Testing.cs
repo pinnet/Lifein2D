@@ -19,6 +19,6 @@ public class Testing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      Debug.Log(grid.GetGridPosition(MouseWorld.GetPosition()));
+     // Debug.Log(grid.GetGridPosition(MouseWorld.GetPosition()));
     }
 }
