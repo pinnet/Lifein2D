@@ -11,12 +11,24 @@ public class UiController : MonoBehaviour
 {
     [SerializeField] private UIDocument document;
     [SerializeField] private VoidEvent startGame;
+    [SerializeField] private AudioClipTriggerEvent audioClipTriggerEvent;
 
     private void Awake()
     {
         var root = document.rootVisualElement;
         var startButton = root.Q<Button>("GoButton");
-        startButton.clicked += () => { startGame.Raise(); };
+        
+        startButton.RegisterCallback<MouseEnterEvent>((evt) =>
+        {
+            audioClipTriggerEvent.Raise(new AudioPlayerControl(AudioPlayerEvents.MouseOverButton));
+        }
+        );
+
+        startButton.clicked += () => 
+        { 
+            startGame.Raise();
+            audioClipTriggerEvent.Raise(new AudioPlayerControl(AudioPlayerEvents.GameStart));
+        };
     }
 
     public void UpdateUI(UIData data)

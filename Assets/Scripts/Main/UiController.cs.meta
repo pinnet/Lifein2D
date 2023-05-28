@@ -3,7 +3,11 @@ guid: 9fe6c1385eff3444bb146679fc526bfa
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - document: {instanceID: 0}
+  - startGame: {fileID: 11400000, guid: 4d548832a206b494ca1b3b7fcb0a7856, type: 2}
+  - audioClipTriggerEvent: {fileID: 11400000, guid: 60b8be672108326409773ab38895109e,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

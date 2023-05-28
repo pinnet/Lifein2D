@@ -5,8 +5,12 @@
             <ui:Label text="Main Menu" display-tooltip-when-elided="true" name="Title" class="Titleface" />
             <ui:Label tabindex="-1" text="Choose an option" display-tooltip-when-elided="true" style="color: rgb(255, 255, 255); font-size: 38px; padding-bottom: 2px; margin-bottom: 19px; -unity-text-align: upper-center; -unity-font-definition: initial; -unity-font: url(&apos;project://database/Assets/Imported/FPSFont/FPS%20Gaming%20Font/Square-Black.ttf?fileID=12800000&amp;guid=d7cffddcbc0cc8f4ebe6e28eb9804082&amp;type=3#Square-Black&apos;); margin-left: 2px; margin-right: 2px; margin-top: 2px;" />
             <ui:Button text="Start Game" display-tooltip-when-elided="true" name="Start" class="hovver Buttonface" />
+            <ui:Button text="Options" display-tooltip-when-elided="true" name="Options" class="Buttonface" />
+            <ui:VisualElement name="OptionBox" class="optionBox" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.5); display: none;">
+                <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" style="height: 40px;" />
+            </ui:VisualElement>
             <ui:Button text="About" display-tooltip-when-elided="true" name="About" class="Buttonface" />
-            <ui:VisualElement name="Aboutbox" class="hidden" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.52); width: 100%; height: 100%; color: rgb(255, 255, 255); font-size: 24px; -unity-text-align: upper-left;">
+            <ui:VisualElement name="Aboutbox" class="hidden optionBox" style="display: none;">
                 <ui:Label tabindex="-1" text="A game by Danny Arnold" display-tooltip-when-elided="true" style="font-size: 14px; align-items: center; -unity-text-align: upper-center;" />
             </ui:VisualElement>
         </ui:VisualElement>

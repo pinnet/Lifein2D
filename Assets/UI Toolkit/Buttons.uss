@@ -7,7 +7,7 @@
     width: 58%;
     font-size: 31px;
     -unity-font-definition: initial;
-    -unity-font: url('project://database/Assets/FPSFont/FPS%20Gaming%20Font/Square-Black.ttf?fileID=12800000&guid=d7cffddcbc0cc8f4ebe6e28eb9804082&type=3#Square-Black');
+    -unity-font: url('project://database/Assets/Imported/FPSFont/FPS%20Gaming%20Font/Square-Black.ttf?fileID=12800000&guid=d7cffddcbc0cc8f4ebe6e28eb9804082&type=3#Square-Black');
     -unity-font-style: italic;
     border-left-width: 2px;
     border-right-width: 2px;
@@ -46,8 +46,8 @@
 .Titleface {
     align-items: center;
     justify-content: space-between;
-    -unity-font: url('project://database/Assets/FPSFont/FPS%20Gaming%20Font/Square-Black.ttf?fileID=12800000&guid=d7cffddcbc0cc8f4ebe6e28eb9804082&type=3#Square-Black');
-    font-size: 161px;
+    -unity-font: url('project://database/Assets/Imported/FPSFont/FPS%20Gaming%20Font/Square-Black.ttf?fileID=12800000&guid=d7cffddcbc0cc8f4ebe6e28eb9804082&type=3#Square-Black');
+    font-size: 119px;
     -unity-text-align: middle-center;
     -unity-text-outline-width: 1px;
     text-shadow: 2px 2px 1.5px rgb(23, 35, 84);
@@ -58,4 +58,15 @@
     margin-bottom: 4px;
     padding-bottom: 2px;
     -unity-font-definition: initial;
+}
+
+.optionBox {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0.52);
+    width: 100%;
+    height: 100%;
+    color: rgb(255, 255, 255);
+    font-size: 24px;
+    -unity-text-align: upper-left;
+    display: flex;
 }
