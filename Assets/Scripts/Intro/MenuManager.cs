@@ -13,7 +13,8 @@ public class MenuManager : MonoBehaviour
     private void Awake()
     {
         var root = document.rootVisualElement;
-        var aboutBox = root.Q<VisualElement>("Aboutbox");
+        var aboutBox = root.Q<VisualElement>("AboutBox");
+        var optionsBox = root.Q<VisualElement>("OptionsBox");
         var startButton = root.Q<Button>("Start");
         var optionsButton = root.Q<Button>("Options");
         var aboutButton = root.Q<Button>("About");
@@ -33,7 +34,10 @@ public class MenuManager : MonoBehaviour
             audioClipTriggerEvent.Raise(new AudioPlayerControl(AudioPlayerEvents.MouseOverButton));
         }
         );
+        
         aboutButton.clicked += () => { aboutBox.ToggleInClassList("hidden"); };
+        optionsButton.clicked += () => { optionsBox.ToggleInClassList("hidden"); };
+
         startButton.clicked += () => {
             audioClipTriggerEvent.Raise(new AudioPlayerControl(AudioPlayerEvents.GameStart));
             LoadStartScene(); 
