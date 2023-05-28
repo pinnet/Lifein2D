@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1190890998313347825}
   - component: {fileID: 2523599977937456240}
+  - component: {fileID: 2947860698679207405}
   m_Layer: 0
   m_Name: DebugObject
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   - {fileID: 825093000949301975}
   - {fileID: 5996676159182469006}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2523599977937456240
 MonoBehaviour:
@@ -47,6 +48,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmp: {fileID: 4800307818333389857}
+  baseMaterial: {fileID: 2100000, guid: 190d08e3a8a7a9b438c5ed835c170988, type: 2}
+  highlightMaterial: {fileID: 2100000, guid: 2034e27fe4323554da3ecc295dbeca67, type: 2}
+  selectedMaterial: {fileID: 2100000, guid: 3761456933469644db2e4e910c01ae79, type: 2}
+--- !u!114 &2947860698679207405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3602103861859745862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46945b9d7028cf44193439f1892ce3a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 88ca14e8ddec31e4f8b97796615d5204, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4893764813983714652
 GameObject:
   m_ObjectHideFlags: 0
