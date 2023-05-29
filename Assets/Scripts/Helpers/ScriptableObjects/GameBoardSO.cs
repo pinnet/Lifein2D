@@ -12,4 +12,5 @@ public class GameBoardSO : ScriptableObject
     public int totalGenerations;
     public int startingMoves;
     public int startingMoveCost;
+    public int generationValue;
 }

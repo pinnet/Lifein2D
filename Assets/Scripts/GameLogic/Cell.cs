@@ -11,9 +11,9 @@ namespace CellularAutomaton
         private PlayerSO owner;
         private Vector2Int position;
 
-        public Cell()
+        public Cell(bool alive = false)
         {
-            this.alive = false;
+            this.alive = alive;
             this.owner = null;
         }
         public bool Alive 

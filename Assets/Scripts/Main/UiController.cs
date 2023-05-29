@@ -11,13 +11,17 @@ public class UiController : MonoBehaviour
     [SerializeField] private VoidEvent startGame;
     [SerializeField] private VoidEvent restartGame;
     [SerializeField] private AudioClipTriggerEvent audioClipTriggerEvent;
-    Button startButton,restartButton,settingsButton;
+    private Button startButton,restartButton,settingsButton;
+    
     private void Awake()
     {
         var root = document.rootVisualElement;
+
+       
         startButton = root.Q<Button>("GoButton");
         restartButton = root.Q<Button>("RestartButton");
         settingsButton = root.Q<Button>("SettingsButton");
+        
 
         startButton.ToggleInClassList("hidden");
 
@@ -32,22 +36,25 @@ public class UiController : MonoBehaviour
         }
         );
 
-        startButton.clicked += () => 
-        { 
-            startGame.Raise();
-            audioClipTriggerEvent.Raise(new AudioPlayerControl(AudioPlayerEvents.GameStart));
-            startButton.ToggleInClassList("hidden");
-            restartButton.ToggleInClassList("hidden");
-        };
-        restartButton.clicked += () =>
-        {
-            restartGame.Raise();
-            audioClipTriggerEvent.Raise(new AudioPlayerControl(AudioPlayerEvents.GameEnd));
-            startButton.ToggleInClassList("hidden");
-            restartButton.ToggleInClassList("hidden");
-        };
+        startButton.clicked += StartButton_clicked;
+        restartButton.clicked += RestartButton_clicked;
     }
-    
+
+    private void StartButton_clicked()
+    {
+        startGame.Raise();
+        audioClipTriggerEvent.Raise(new AudioPlayerControl(AudioPlayerEvents.GameStart));
+        startButton.ToggleInClassList("hidden");
+        restartButton.ToggleInClassList("hidden");
+    }
+
+    private void RestartButton_clicked()
+    {
+        restartGame.Raise();
+        audioClipTriggerEvent.Raise(new AudioPlayerControl(AudioPlayerEvents.GameEnd));
+        startButton.ToggleInClassList("hidden");
+        restartButton.ToggleInClassList("hidden");
+    }
     public void UpdateUI(UIData data)
     {
         if(typeof(UIData) != data.GetType()) return;    

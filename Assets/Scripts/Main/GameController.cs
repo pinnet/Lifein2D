@@ -23,13 +23,14 @@ public class GameController : MonoBehaviour
     private GridPosition oldPosition;
     private bool gameStarted = false;
     private Transform hilight;
-
-
+    private GridFrame[] gridFrameHistory;
+    
     private int score = 0;
     private int moves = 0;
 
     private void Start()
     {
+        gridFrameHistory = new GridFrame[gameBoard.totalGenerations];
         oldPosition = new GridPosition(int.MinValue, int.MinValue);
         displayGrid = new GridSystem(gameBoard.width, gameBoard.height, gameBoard.cellSize);
         hilight = GameObject.Instantiate(hilightPrefab, new Vector3(0, 0, 0), Quaternion.identity);
@@ -38,17 +39,41 @@ public class GameController : MonoBehaviour
     
     void Update()
     {
-        if(gameStarted) return;
-
-        mousePosition = displayGrid.GetGridPosition(MouseWorld.GetPosition());
-        if (mousePosition == oldPosition) return;
-        oldPosition = mousePosition;
-        bool cellVisible = (mousePosition.x >= 0 && mousePosition.x < gameBoard.width && mousePosition.z >= 0 && mousePosition.z < gameBoard.height);
-        PlaceHilight(mousePosition.x, mousePosition.z, cellVisible);
+        if (!gameStarted)
+        {
+            mousePosition = displayGrid.GetGridPosition(MouseWorld.GetPosition());
+            if (mousePosition == oldPosition) return;
+            oldPosition = mousePosition;
+            bool cellVisible = (mousePosition.x >= 0 && mousePosition.x < gameBoard.width && mousePosition.z >= 0 && mousePosition.z < gameBoard.height);
+            PlaceHilight(mousePosition.x, mousePosition.z, cellVisible);
+        }
     }
+    public void GameStart(Helpers.Events.Void value)
+    {
+        gameStarted = true;
+        UpdateUI(moves: 0, status: "Game Started");
+        for (int i = 0; i < gameBoard.totalGenerations; i++)
+        {
+            gridFrameHistory[i] = new GridFrame(gameGrid, i);
+            gameGrid.Advance(player);
+        }
+        StartCoroutine(PlayGridHistory(.2f));
+    }
+    IEnumerator PlayGridHistory(float delay)
+    {
+        int generation = 0;
+        while (generation < gameBoard.totalGenerations)
+        {
+            DisplayGrid(gridFrameHistory[generation++]);
+            yield return new WaitForSeconds(delay);
+        }
+    }
+
+
     private void DisplayGrid(GridFrame frame)
     {
         ClearGrid();
+        int noOfCells = 0;
         for (int x = 0; x < frame.Width; x++)
         {
             for (int y = 0; y < frame.Height; y++)
@@ -56,11 +81,21 @@ public class GameController : MonoBehaviour
                 if (frame.Grid[x, y].Alive)
                 {
                     Transform cell = GameObject.Instantiate(cellPrefab, displayGrid.GetWorldPosition(new GridPosition(x, y)), Quaternion.identity);
-                    score += gameBoard.cellValue;
+                    noOfCells++;
                 }
             }
         }
-        UpdateUI(score: score,generations: frame.Generation,status: $"Displaying Generation {frame.Generation}");
+        if(frame.Generation >= gameBoard.totalGenerations - 1 || noOfCells == 0)
+        { 
+            score += (frame.Generation * gameBoard.generationValue);
+            GameOver();
+        }
+        else
+        {
+            score += noOfCells * gameBoard.cellValue;
+            UpdateUI(score: score, generations: frame.Generation, status: $"Displaying Generation {frame.Generation}");
+        }
+        
     }
     public void OnMouseClick(InputAction.CallbackContext ctx)
     {
@@ -95,21 +130,19 @@ public class GameController : MonoBehaviour
         }   
         
     }
-    public void GameStart(Helpers.Events.Void value)
+    public void GameOver()
     {
-        gameStarted = true;
-        UpdateUI(moves:0,status:"Game Started");
-        gameGrid.Advance(player);
-        GridFrame gameGridFrame = new GridFrame(gameGrid, 1);
 
+        StopAllCoroutines();
 
-        DisplayGrid(gameGridFrame);
+        UpdateUI(score: score,status: $"Game Over you scored {score}") ;
 
     }
 
     public void GameRestart(Helpers.Events.Void value)
     {
         gameStarted = false;
+        StopAllCoroutines();
         InitiliseGame();
         ClearGrid();
     }
