@@ -1,14 +1,18 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/Gamebuttons.uss?fileID=7433441132597879392&amp;guid=109a21a04aa240f4ca974f44d4e04222&amp;type=3#Gamebuttons" />
     <ui:VisualElement name="screen" style="width: 100%; height: 100%;">
-        <ui:VisualElement name="Score" style="flex-grow: 1; background-color: rgba(7, 7, 7, 0.82); height: auto; width: 100%; align-items: flex-end; justify-content: space-around; align-self: center; flex-direction: row; top: auto; position: absolute; color: rgb(255, 255, 255); -unity-font-style: bold;">
-            <ui:Label tabindex="-1" text="Starting Cells Remaining :" display-tooltip-when-elided="true" name="MoveText" class="LabelColour" />
-            <ui:Label tabindex="-1" text="Score : 00000" display-tooltip-when-elided="true" name="ScoreText" />
+        <ui:VisualElement name="Score" style="flex-grow: 1; background-color: rgba(7, 7, 7, 0.82); height: auto; width: 100%; align-items: center; justify-content: space-around; align-self: center; flex-direction: row; top: auto; position: absolute; color: rgb(255, 255, 255); -unity-font-style: bold;">
+            <ui:Label tabindex="-1" text="Starting Cells Remaining : 0" display-tooltip-when-elided="true" name="MoveText" class="LabelColour" style="justify-content: flex-end;" />
+            <ui:Label tabindex="-1" text="Score : 00000" display-tooltip-when-elided="true" name="ScoreText" style="align-items: center; align-self: center; justify-content: flex-start;" />
             <ui:Label tabindex="-1" text="Generation : &lt;Press Go&gt;" display-tooltip-when-elided="true" name="GenerationText" />
         </ui:VisualElement>
-        <ui:VisualElement name="Body" style="flex-grow: 1; height: 500px;" />
-        <ui:VisualElement name="Toolbar" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); justify-content: flex-start; align-self: center; width: 100%; height: 9px; align-items: center; flex-direction: row; position: absolute; bottom: 40px;">
-            <ui:Button text="Go" display-tooltip-when-elided="true" name="GoButton" enable-rich-text="false" class="buttonface" />
+        <ui:VisualElement name="Body" style="flex-grow: 1; height: 500px;">
+            <ui:VisualElement name="Settings" class="hidden" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.85);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Toolbar" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); justify-content: flex-start; align-self: center; width: 100%; height: 9px; align-items: center; flex-direction: row; position: absolute; bottom: 40px; padding-left: 14px; padding-right: 14px;">
+            <ui:Button display-tooltip-when-elided="true" name="GoButton" enable-rich-text="false" class="buttonface hidden" style="width: 30px; background-image: url(&apos;project://database/Assets/Art/Images/PlayIcon.png?fileID=21300000&amp;guid=f2c746ceb11eabb49879f28549c0e95d&amp;type=3#PlayIcon&apos;); height: 30px;" />
+            <ui:Button display-tooltip-when-elided="true" name="RestartButton" enable-rich-text="false" class="buttonface hidden" style="width: 30px; background-image: url(&apos;project://database/Assets/Art/Images/RestartIcon.png?fileID=21300000&amp;guid=c64d6ebc7d75425489433b993832e7d9&amp;type=3#RestartIcon&apos;); height: 30px;" />
+            <ui:Button display-tooltip-when-elided="true" name="SettingsButton" class="buttonface hidden" style="background-image: url(&apos;project://database/Assets/Art/Images/SettingsIcon.png?fileID=21300000&amp;guid=f148b677a4004d845a26ba3b1906ba7a&amp;type=3#SettingsIcon&apos;); width: 30px; height: 30px;" />
         </ui:VisualElement>
         <ui:VisualElement name="StatusBar" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.22); height: 20px; width: 100%; justify-content: flex-start; position: absolute; bottom: 0; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-top-left-radius: 7px; border-bottom-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; flex-direction: row; align-items: center; align-self: center; flex-basis: 0;">
             <ui:Label tabindex="-1" text="Status" display-tooltip-when-elided="true" name="StatusText" style="-unity-text-align: middle-left; color: rgb(255, 255, 255); margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 15px; padding-right: 15px; padding-top: 0; padding-bottom: 0;" />

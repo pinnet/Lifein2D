@@ -25,5 +25,12 @@ public class InputManager : MonoBehaviour
     {
         return Input.mousePosition;
     }
-
+    public bool IsMouseButtonDown()
+    {
+        return Input.GetMouseButtonDown(0);
+    }
+    public Vector2 GetCameraMoveVector()
+    {
+        return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+    }
 }

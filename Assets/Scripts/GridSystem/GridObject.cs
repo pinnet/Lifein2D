@@ -12,5 +12,12 @@ public class GridObject
         this.gridSystem = gridSystem;
         this.gridPosition = gridPosition;
     }
-
+    public GridPosition GetGridPosition()
+    {
+        return gridPosition;
+    }
+    public override string ToString()
+    {
+        return gridPosition.ToString();
+    }
 }

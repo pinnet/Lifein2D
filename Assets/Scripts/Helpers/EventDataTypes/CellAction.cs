@@ -5,13 +5,13 @@ namespace Helpers.Events
     {
         public int x { get; set; }
         public int z { get; set; }
-        public bool isSelected;
+        public bool ToRemove { get; set; }
 
         public CellAction(int x, int z)
         {
             this.x = x;
             this.z = z;
-            this.isSelected = false;
+            this.ToRemove = false;
         }
     }
 }

@@ -20,7 +20,7 @@
     justify-content: flex-start;
     -unity-text-align: middle-center;
     font-size: 12px;
-    width: 125px;
+    width: 58px;
 }
 
 .buttonface:hover {
@@ -30,4 +30,8 @@
 .buttonface:active {
     background-color: rgb(8, 243, 35);
     translate: 0 1px;
+}
+
+.hidden {
+    display: none;
 }
