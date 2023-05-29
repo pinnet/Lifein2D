@@ -42,8 +42,9 @@ public class DisplayGridCell : MonoBehaviour
     }
     public void onCellAction(CellAction action)
     {
+        if(action.AllClear) { Remove(); }
+        
         if(gridObject == null) return;
-
         GridPosition gridPosition = gridObject.GetGridPosition();
 
         if (action.x != gridPosition.x || action.z != gridPosition.z)

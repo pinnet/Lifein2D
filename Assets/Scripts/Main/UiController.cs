@@ -9,6 +9,7 @@ public class UiController : MonoBehaviour
 {
     [SerializeField] private UIDocument document;
     [SerializeField] private VoidEvent startGame;
+    [SerializeField] private VoidEvent restartGame;
     [SerializeField] private AudioClipTriggerEvent audioClipTriggerEvent;
     Button startButton,restartButton,settingsButton;
     private void Awake()
@@ -25,11 +26,23 @@ public class UiController : MonoBehaviour
             audioClipTriggerEvent.Raise(new AudioPlayerControl(AudioPlayerEvents.MouseOverButton));
         }
         );
+        restartButton.RegisterCallback<MouseEnterEvent>((evt) =>
+        {
+            audioClipTriggerEvent.Raise(new AudioPlayerControl(AudioPlayerEvents.MouseOverButton));
+        }
+        );
 
         startButton.clicked += () => 
         { 
             startGame.Raise();
             audioClipTriggerEvent.Raise(new AudioPlayerControl(AudioPlayerEvents.GameStart));
+            startButton.ToggleInClassList("hidden");
+            restartButton.ToggleInClassList("hidden");
+        };
+        restartButton.clicked += () =>
+        {
+            restartGame.Raise();
+            audioClipTriggerEvent.Raise(new AudioPlayerControl(AudioPlayerEvents.GameEnd));
             startButton.ToggleInClassList("hidden");
             restartButton.ToggleInClassList("hidden");
         };

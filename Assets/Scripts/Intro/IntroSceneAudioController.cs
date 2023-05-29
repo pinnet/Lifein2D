@@ -16,13 +16,13 @@ public class IntroSceneAudioController : MonoBehaviour
         switch (audioClipPlay.Trigger)
         {
             case AudioPlayerEvents.MouseOverButton:
-                audioSource.PlayOneShot(audioClips[0]);
+                if (!audioSource.isPlaying) audioSource.PlayOneShot(audioClips[0]);
                 break;
             case AudioPlayerEvents.MouseClickButton:
-                audioSource.PlayOneShot(audioClips[1]);
+                if (!audioSource.isPlaying) audioSource.PlayOneShot(audioClips[1]);
                 break;
             case AudioPlayerEvents.GameStart:
-                audioSource.PlayOneShot(audioClips[2]);
+                if (!audioSource.isPlaying) audioSource.PlayOneShot(audioClips[2]);
                 break;
             default:
                 break;

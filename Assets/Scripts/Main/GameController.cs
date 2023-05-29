@@ -14,13 +14,15 @@ public class GameController : MonoBehaviour
     [SerializeField] private UIUpdateEvent updateUI;
     [SerializeField] private CellActionEvent cellActionEvent;
     [SerializeField] private Transform cellPrefab;
+    [SerializeField] private Transform hilightPrefab; 
 
+    private const string initialMessage = "Player One select your starting cells to begin and then press GO";
     private CellularAutomaton.Grid gameGrid;
     private GridSystem displayGrid;
     private GridPosition mousePosition;
     private GridPosition oldPosition;
     private bool gameStarted = false;
-    private Transform cell;
+    private Transform hilight;
 
 
     private int score = 0;
@@ -29,14 +31,11 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         oldPosition = new GridPosition(int.MinValue, int.MinValue);
-        gameGrid = new CellularAutomaton.Grid(gameBoard.width, gameBoard.height);
         displayGrid = new GridSystem(gameBoard.width, gameBoard.height, gameBoard.cellSize);
-        moves = gameBoard.startingMoves;
-        score = gameBoard.startingMoves * gameBoard.startingMoveCost;
-        cell = GameObject.Instantiate(cellPrefab, new Vector3(0,0,0), Quaternion.identity);
-        UpdateUI(score, gameBoard.startingMoves, null, "Player One select your starting cells to begin and then press GO");
+        hilight = GameObject.Instantiate(hilightPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        InitiliseGame();
     }
-
+    
     void Update()
     {
         if(gameStarted) return;
@@ -44,24 +43,34 @@ public class GameController : MonoBehaviour
         mousePosition = displayGrid.GetGridPosition(MouseWorld.GetPosition());
         if (mousePosition == oldPosition) return;
         oldPosition = mousePosition;
-       
-        //mousePosition.x = Mathf.Clamp(mousePosition.x, 0, gameBoard.width - 1);
-        //mousePosition.z = Mathf.Clamp(mousePosition.z, 0, gameBoard.height - 1);
         bool cellVisible = (mousePosition.x >= 0 && mousePosition.x < gameBoard.width && mousePosition.z >= 0 && mousePosition.z < gameBoard.height);
         PlaceHilight(mousePosition.x, mousePosition.z, cellVisible);
+    }
+    private void DisplayGrid(GridFrame frame)
+    {
+        ClearGrid();
+        for (int x = 0; x < frame.Width; x++)
+        {
+            for (int y = 0; y < frame.Height; y++)
+            {
+                if (frame.Grid[x, y].Alive)
+                {
+                    Transform cell = GameObject.Instantiate(cellPrefab, displayGrid.GetWorldPosition(new GridPosition(x, y)), Quaternion.identity);
+                    score += gameBoard.cellValue;
+                }
+            }
+        }
+        UpdateUI(score: score,generations: frame.Generation,status: $"Displaying Generation {frame.Generation}");
     }
     public void OnMouseClick(InputAction.CallbackContext ctx)
     {
         if (ctx.phase != InputActionPhase.Performed) return;
         bool cellVisible = (mousePosition.x >= 0 && mousePosition.x < gameBoard.width && mousePosition.z >= 0 && mousePosition.z < gameBoard.height);
         
-        if(cellVisible) toggleCell(mousePosition.x, mousePosition.z);
-
-        
+        if(cellVisible) toggleCell(mousePosition.x, mousePosition.z);   
     }
     private void toggleCell(int x,int y)
-    {
-        
+    { 
         GridPosition gridPosition = new GridPosition(x, y);
         if (!gameGrid[x,y].Alive)
         {
@@ -71,7 +80,6 @@ public class GameController : MonoBehaviour
             score -= gameBoard.startingMoveCost;
             Transform cell = GameObject.Instantiate(cellPrefab, displayGrid.GetWorldPosition(gridPosition), Quaternion.identity);
             cell.GetComponent<DisplayGridCell>().SetGridObject(displayGrid.GetGridObject(gridPosition));
-
             UpdateUI(score:score,moves:moves);
         }
         else
@@ -80,7 +88,6 @@ public class GameController : MonoBehaviour
             CellAction action = new CellAction(x, y);
             action.ToRemove = true;
             cellActionEvent.Raise(action);
-
             gameGrid[x, y].Owner = null;
             moves++;
             score += gameBoard.startingMoveCost;
@@ -92,8 +99,33 @@ public class GameController : MonoBehaviour
     {
         gameStarted = true;
         UpdateUI(moves:0,status:"Game Started");
+        gameGrid.Advance(player);
+        GridFrame gameGridFrame = new GridFrame(gameGrid, 1);
+
+
+        DisplayGrid(gameGridFrame);
+
     }
 
+    public void GameRestart(Helpers.Events.Void value)
+    {
+        gameStarted = false;
+        InitiliseGame();
+        ClearGrid();
+    }
+    private void InitiliseGame()
+    {
+        gameGrid = new CellularAutomaton.Grid(gameBoard.width, gameBoard.height);
+        moves = gameBoard.startingMoves;
+        score = gameBoard.startingMoves * gameBoard.startingMoveCost;
+        UpdateUI(score, gameBoard.startingMoves, null, initialMessage);
+    }
+    private void ClearGrid() 
+    {
+        CellAction action = new CellAction(0, 0);
+        action.AllClear = true;
+        cellActionEvent.Raise(action);
+    }
     private void UpdateUI(int? score = null,int? moves = null,int? generations = null,string? status = null)
     {
         UIData data = new UIData();
@@ -107,15 +139,15 @@ public class GameController : MonoBehaviour
         if(status != null) data.status = status;
         else               data.status = null;
         
-        if(generations != null)  data.generation = $"Generation : {generations}";
+        if(generations != null)  data.generation = (generations == 0)? $"Generation : <Press GO>" : $"Generation : {generations}";
         else              data.generation = null;
                 
         updateUI.Raise(data);
     }
     private void PlaceHilight(int x,int z,bool isVisible)
     {
-        cell.position = displayGrid.GetWorldPosition(new GridPosition(x, z));
-        cell.GetComponent<DisplayGridCell>().SetVisibility(isVisible);
+        hilight.position = displayGrid.GetWorldPosition(new GridPosition(x, z));
+        hilight.GetComponent<DisplayGridHilight>().SetVisibility(isVisible);
     }
     public static int Min(int a, int b)
     {
