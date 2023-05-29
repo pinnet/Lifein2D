@@ -88,6 +88,7 @@ public class GameController : MonoBehaviour
         if(frame.Generation >= gameBoard.totalGenerations - 1 || noOfCells == 0)
         { 
             score += (frame.Generation * gameBoard.generationValue);
+            UpdateUI(score: score, generations: frame.Generation, status: $"Displaying Generation {frame.Generation}");
             GameOver();
         }
         else
